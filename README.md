@@ -1,14 +1,16 @@
 # urrt
 
-An Android remote for Unraid servers: server health at a glance, Docker containers and VMs you can start and stop, storage and temperatures, and notifications. It uses your own server's official Unraid API: no account, no cloud relay, no tracking.
+An Android remote for Unraid servers: server health at a glance, live network speeds, Docker containers and VMs you can start and stop, storage, drive temperatures and parity checks, a UPS card, the server's logs, and notifications. It uses your own server's official Unraid API: no account, no cloud relay, no tracking.
 
 This repository holds signed release builds only.
 
 <p>
-<img src="screenshots/home.png" width="220" alt="Home: server health, CPU and RAM gauges, storage pools">
+<img src="screenshots/home.png" width="220" alt="Home: server health, CPU and RAM gauges, storage, apps, network speeds and UPS">
 <img src="screenshots/docker.png" width="220" alt="Docker: containers with live CPU and memory">
 <img src="screenshots/vms.png" width="220" alt="VMs: actions valid for each VM's state">
-<img src="screenshots/storage.png" width="220" alt="Storage: pools with their drives and temperatures">
+<img src="screenshots/storage.png" width="220" alt="Storage: pools with their drives and temperatures, and the parity check">
+<img src="screenshots/network.png" width="220" alt="Network: every interface with live speeds, totals and drops">
+<img src="screenshots/logs.png" width="220" alt="Server logs: syslog followed live">
 </p>
 
 Screenshots show a demo server.
@@ -40,4 +42,6 @@ With the Android SDK: `apksigner verify --print-certs urrt-<version>.apk`. The `
 
 ## Good to know
 
+- **UPS card:** shown only when the UPS is set up in Unraid's UPS Settings (apcupsd). The Unraid API does not report a UPS monitored through the NUT plugin (requested upstream: https://github.com/unraid/api/issues/2115).
+- **Parity controls:** Check, Check and Correct, Pause, Resume and Cancel appear only on arrays with a parity disk. They have been tested against the API's replies but not yet on a real array, so use them with care.
 - **VM Shut down:** Unraid asks the guest to shut down, waits about 10 seconds, then cuts power. Shut down slow guests (Windows, Home Assistant OS mid-update) from inside the VM.
