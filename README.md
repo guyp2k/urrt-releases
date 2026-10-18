@@ -1,11 +1,12 @@
 # urrt
 
-An Android remote for Unraid servers: server health at a glance, live network speeds, Docker containers and VMs you can start and stop, storage, drive temperatures and parity checks, a UPS card, the server's logs, and notifications. It uses your own server's official Unraid API: no account, no cloud relay, no tracking.
+An Android remote for Unraid servers: server health at a glance (a green, amber or red card that takes you to whatever needs attention), live network speeds, Docker containers and VMs you can start and stop, storage, drive temperatures and parity checks, a UPS card, the server's logs, and notifications. It uses your own server's official Unraid API: no account, no cloud relay, no tracking.
 
 This repository holds signed release builds only.
 
 <p>
-<img src="screenshots/home.png" width="220" alt="Home: server health, CPU and RAM gauges, storage, apps, network speeds and UPS">
+<img src="screenshots/home.png" width="220" alt="Home: a green Healthy server card, icon stats, CPU and RAM gauges, storage, apps, network speeds and UPS">
+<img src="screenshots/health.png" width="220" alt="Home: an amber Warning card listing its reasons, each one opening the screen that deals with it">
 <img src="screenshots/docker.png" width="220" alt="Docker: containers with live CPU and memory">
 <img src="screenshots/vms.png" width="220" alt="VMs: actions valid for each VM's state">
 <img src="screenshots/storage.png" width="220" alt="Storage: pools with their drives and temperatures, and the parity check">
@@ -41,6 +42,8 @@ With the Android SDK: `apksigner verify --print-certs urrt-<version>.apk`. The `
 - With app lock on, urrt hides its screen from the recent-apps view.
 
 ## Good to know
+
+- **Health card:** the server card on Home is green when all is well, amber for warnings (stale data, a stopped or rebuilding array, disk errors, hot drives, unread warnings, UPS on battery) and red for problems (array fault, disabled or missing disk, a drive at its limit, unread alerts, UPS low battery). It has no colour when urrt cannot read enough to judge. Tap it to go where the reason is handled: Notifications for unread alerts and warnings (archive them there), Storage for disks and drive temperatures.
 
 - **UPS card:** shown only when the UPS is set up in Unraid's UPS Settings (apcupsd). The Unraid API does not report a UPS monitored through the NUT plugin (requested upstream: https://github.com/unraid/api/issues/2115).
 - **Parity controls:** Check, Check and Correct, Pause, Resume and Cancel appear only on arrays with a parity disk. They have been tested against the API's replies but not yet on a real array, so use them with care.
