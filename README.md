@@ -5,7 +5,7 @@ An Android remote for Unraid servers: server health at a glance (a green, amber 
 This repository holds signed release builds only.
 
 <p>
-<img src="screenshots/home.png" width="220" alt="Home: a green Healthy server card, CPU, array, uptime and alert stats, CPU and RAM gauges, one line per storage pool, and container and VM counts">
+<img src="screenshots/home.png" width="220" alt="Home: a green Healthy server card, CPU, array, uptime and alert stats, CPU and RAM gauges, one line per storage pool, container and VM counts, and the live Network card">
 <img src="screenshots/health.png" width="220" alt="Home: an amber Warning card listing its reasons, a hot drive and an unread warning, each one opening the screen that deals with it">
 <img src="screenshots/docker.png" width="220" alt="Docker: count tiles that filter the list, running containers with update tags and web page links, stopped and paused containers with a quick start">
 <img src="screenshots/update.png" width="220" alt="Docker: a container's sheet with an Update button for a newer image">
