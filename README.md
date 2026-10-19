@@ -1,6 +1,6 @@
 # urrt
 
-An Android remote for Unraid servers: server health at a glance (a green, amber or red card that takes you to whatever needs attention), Docker containers you can filter, start, stop and update, VMs you can filter, start and stop, storage by pool with every drive's model and temperature, a Disk Health view that puts problem drives first, a page per drive, parity checks, live network speeds, a UPS card, the server's and containers' logs (which you can share, for example by email), and notifications. It uses your own server's official Unraid API: no account, no cloud relay, no tracking.
+An Android remote for Unraid servers: server health at a glance (a green, amber or red card that takes you to whatever needs attention), Docker containers you can filter, start, stop and update, VMs you can filter, start and stop, storage by pool with every drive's model and temperature, a Disk Health view that puts problem drives first, a page per drive, parity checks, a Network tab with every interface, VPN link and Docker network and their live speeds, a UPS card, the server's and containers' logs (which you can share, for example by email), and notifications. It uses your own server's official Unraid API: no account, no cloud relay, no tracking.
 
 This repository holds signed release builds only.
 
@@ -13,7 +13,7 @@ This repository holds signed release builds only.
 <img src="screenshots/storage.png" width="220" alt="Storage, Pools: one card per pool with usage, and each drive with its slot, model and temperature">
 <img src="screenshots/disk-health.png" width="220" alt="Storage, Disk Health: drive, flagged and standby tiles and the drive to watch, then every drive hottest first">
 <img src="screenshots/drive.png" width="220" alt="A drive's page: model, temperature against the server's limits, pool and slot, device and serial">
-<img src="screenshots/network.png" width="220" alt="Network: every interface with live speeds, totals and drops">
+<img src="screenshots/network.png" width="220" alt="Network: the live card with Download and Upload in MB/s, then each interface with its link speed, VLAN, MTU, address, DHCP or Static, live speeds, totals and drops">
 <img src="screenshots/logs.png" width="220" alt="Server logs: syslog followed live, with Share and Pause">
 </p>
 
@@ -51,6 +51,7 @@ With the Android SDK: `apksigner verify --print-certs urrt-<version>.apk`. The `
 - **Filters:** on Docker, VMs and Disk Health the count tiles at the top are the filters. Tap one to show only those, All (Drives on Disk Health) to show everything. The fourth Disk Health tile names the drive to watch: one over its warning or limit first, otherwise the hottest. Tap it to open that drive's page.
 - **Container updates:** when the server reports a newer image, the container's sheet has an Update button. Unraid pulls the image and recreates the container, as the webGUI's update link does: a running container starts again, a stopped one stays stopped. urrt then checks and says whether it really updated. Large images can take a few minutes; keep the app open until it reports.
 - **Sharing logs:** Share, next to Pause on a container's logs and on each server log, sends the lines loaded on screen to any app, for example Gmail. The message starts with what it holds and when it was read, such as "Last 200 lines of the plex log on Tower, as of 2026-10-19 10:02:03." or "Lines 13151 to 13174 of 13174 in syslog on Tower". It is the lines on screen, not the whole file.
+- **Network:** the Network card on Home shows the main interface and its link speed, LIVE while the speeds update (RECONNECTING while urrt catches up), and Download and Upload in MB/s. Tap it, or the Network tab, for every interface with its link speed, VLAN, MTU, addresses and DHCP or Static, then VPN links such as Tailscale and the server's Docker networks. SHOW VIRTUAL INTERFACES at the bottom adds Docker bridges, veth and shim links and loopback. The Unraid API does not report the gateway, duplex or which containers use each Docker network, so urrt does not show them.
 - **Retry:** when the server can't be reached, Retry shows "Retrying" and then when it failed, for example "Retry at 09:45:12 failed", so you can tell each tap was tried.
 - **Drive details:** each drive's model and serial come from the disk id Unraid already reports, so opening a drive never wakes it. Firmware and SMART are not shown: the API reads them by querying every drive with smartctl, which would spin up sleeping disks.
 - **UPS card:** shown only when the UPS is set up in Unraid's UPS Settings (apcupsd). The Unraid API does not report a UPS monitored through the NUT plugin (requested upstream: https://github.com/unraid/api/issues/2115).
